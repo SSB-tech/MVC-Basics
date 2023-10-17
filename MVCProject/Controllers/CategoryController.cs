@@ -16,9 +16,9 @@ namespace MVCProject.Controllers
             var data = _db.Categories;
             return View(data);
         }
-        public IActionResult Create(Category model)
+        public IActionResult Create()
         {
-
+            return View();
         }
 
     }
