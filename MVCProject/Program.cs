@@ -1,3 +1,4 @@
+using ClientNotifications.ServiceExtensions;
 using Microsoft.EntityFrameworkCore;
 using MVCProject.Data;
 
@@ -5,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//builder.Services.AddToastNotification();
+
 builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));

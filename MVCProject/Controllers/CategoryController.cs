@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ClientNotifications;
+using Microsoft.AspNetCore.Mvc;
 using MVCProject.Data;
 using MVCProject.Models;
+using static ClientNotifications.Helpers.NotificationHelper;
 
 namespace MVCProject.Controllers
 {
@@ -11,6 +13,12 @@ namespace MVCProject.Controllers
         {
             _db = db;
         }
+        //private IClientNotification _clientNotification;
+
+        //public CategoryController(IClientNotification clientNotification)
+        //{
+        //    _clientNotification = clientNotification;
+        //}
         public IActionResult ListAll()
         {
             var data = _db.Categories;
@@ -48,6 +56,9 @@ namespace MVCProject.Controllers
             }
             return View(data);
 
+            //_clientNotification.AddToastNotification("From Index of home",
+            //                               NotificationType.success,
+            //                               null);
         }
 
         [HttpPost]
@@ -62,6 +73,7 @@ namespace MVCProject.Controllers
             {
                 _db.Categories.Add(model);
                 _db.SaveChanges();
+                TempData["success"] = "Data Successfully Added";
                 return RedirectToAction("ListAll");
             }
             return View(model);
@@ -83,6 +95,7 @@ namespace MVCProject.Controllers
             {
                 _db.Categories.Update(model);
                 _db.SaveChanges();
+                TempData["success"] = "Data Successfully Edited";
                 return RedirectToAction("ListAll");
             }
             return View(model);
@@ -100,6 +113,7 @@ namespace MVCProject.Controllers
             {
                 _db.Categories.Remove(model);
                 _db.SaveChanges();
+                TempData["error"] = "Data Successfully Deleted";
                 return RedirectToAction("ListAll");
             }
             return View(model);
