@@ -67,7 +67,7 @@ namespace MVCProject.Controllers
         {
             if (model.Name == model.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("name", "Name and DisplayOrder Cannot be Same."); //Here error will be displayed below name property because we have used name as the key i.e  ModelState.AddModelError("Key", "Value")
+                ModelState.AddModelError("Name", "Name and DisplayOrder Cannot be Same."); //Here error will be displayed below name property because we have used name as the key i.e  ModelState.AddModelError("Key", "Value"). Also esma name vaneko model ko name ho esma random name halna mildaina.
             }
             if (ModelState.IsValid)
             {
